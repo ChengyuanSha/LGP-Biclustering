@@ -23,7 +23,7 @@ def get_diff_coefficient():
     # Dr. Steffany data
     # 1: control, 0: case
     path2pickle = '../dataset/lgp_steffany_5_19.pkl'
-    df = pd.read_csv('../dataset/discovery_processed_steffany.csv')
+    df = pd.read_csv('../dataset/DLB_sub_lgp.pkl')
     # names = df.columns[:-1]
     # y = df['category'].to_numpy()
     #
