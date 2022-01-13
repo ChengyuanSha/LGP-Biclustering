@@ -77,9 +77,9 @@ def eff_vs_numOfEffFeature_graph(program_length_list, num_of_eff_features, accur
 
 
 
-def create_network(result_data, top_percentage, names, edge_threshold=None):
+def create_network(result_data, top_percentage, names, edge_threshold=None, num_of_models=None):
     top_percentage = top_percentage * 0.01
-    df, node_size_dic = result_data.get_network_data(names, top_percentage, edge_threshold)
+    df, node_size_dic = result_data.get_network_data(names, top_percentage, num_of_models, edge_threshold)
     # error catching, when no data available
     if df.empty:
         return html.Div(

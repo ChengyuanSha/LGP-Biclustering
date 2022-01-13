@@ -198,7 +198,7 @@ class ResultProcessing:
              '  class 1, i.e. healthy'
         return s
 
-    def get_network_data(self, names, top_percentage, edge_threshold=None, specific_feature=None):
+    def get_network_data(self, names, top_percentage, num_of_models, edge_threshold=None, specific_feature=None):
         # all feature index
         index = np.asarray([c for c, i in enumerate(self.feature_list)])
         # get feature occurrence, used as size of the node
@@ -217,6 +217,10 @@ class ResultProcessing:
                 co_occurence_rank.append([row, col, np.round(cooc_matrix[row, col], 2)])
         top = int(len(co_occurence_rank) * top_percentage) # how many in top percent
         co_occurence_rank = sorted(co_occurence_rank, key=lambda x: x[2])[::-1]
+        # normalize co_occurence_rank
+        for i in co_occurence_rank:
+            # weight
+            i[2] = round((i[2] / num_of_models) * 100, 2)
         # use edge as a filter or top percentage as a filter
         if edge_threshold != None:
             co_occurence_rank = [i for i in co_occurence_rank if i[2] >= edge_threshold]
